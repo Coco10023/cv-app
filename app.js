@@ -73,3 +73,21 @@ app.post("/add", (req, res) => {
         }
     );
 });
+
+// Radera kurs 
+app.post("/delete/:id", (req, res) => {
+    db.run("DELETE FROM courses WHERE id = ?", [req.params.id], () => {
+        res.redirect("/");
+    });
+});
+
+// Om sida 
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
+// Starta server
+app.listen(PORT, () => {
+    res.render("about");
+}); 
+
