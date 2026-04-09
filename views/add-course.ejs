@@ -1,0 +1,21 @@
+<%- include("partials/header") %>
+
+<h1>Lägg till kurs</h1>
+
+<% if (errors.length > 0) { %>
+    <ul>
+        <% errors.forEach(e => { %>
+            <li><%= e %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<form action="/add" method="POST">
+    <input type="text" name="coursecode" placeholder="Kurskod"><br>
+    <input type="text" name="coursename" placeholder="Kursnamn"><br>
+    <input type="text" name="syllabus" placeholder="URL"><br>
+    <input type="text" name="progression" placeholder="A/B/C"><br>
+    <button>Spara</button>
+</form>
+
+<%- include("partials/footer") %>

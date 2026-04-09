@@ -12,22 +12,22 @@
             <th>Kursplan</th>
             <th>Progression</th>
             <th></th>
+        </tr>
 
-            <% courses.forEach(c => { %>
-                <tr>
-                    <td><%= c.coursecode %></td>
-                    <td><%= c.coursename %></td>
-                    <td><a href="<%= c.syllabus %>" target="_blank">Länk</a></td>
-                    <td><%= c.progression %></td>
-                    <td>
-                        <form action ="/delete/<%= c.id %>" method = "POST">
-                            <button>Radera</button>
-                        </form>
-                    </td>
-                </tr>
-            <% }) %>
-    </table>}
+        <% courses.forEach(c => { %>
+            <tr>
+                <td><%= c.coursecode %></td>
+                <td><%= c.coursename %></td>
+                <td><a href="<%= c.syllabus %>" target="_blank">Länk</a></td>
+                <td><%= c.progression %></td>
+                <td>
+                    <form action="/delete/<%= c.id %>" method="POST">
+                        <button>Radera</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
 <% } %>
 
 <%- include("partials/footer") %>
-
