@@ -1,6 +1,6 @@
 const express = require("express"); 
 const path = require("path"); 
-const splite3 = require("sqlite3").verbose();
+const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +16,7 @@ db.run(`
         coursecode TEXT NOT NULL,
         coursename TEXT NOT NULL,
         syllabus TEXT NOT NULL,
-        progression TEXT NOT NULL.
+        progression TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
         
@@ -88,6 +88,5 @@ app.get("/about", (req, res) => {
 
 // Starta server
 app.listen(PORT, () => {
-    res.render("about");
+    console.log(`Servern körs på http://localhost:${PORT}`);
 }); 
-
