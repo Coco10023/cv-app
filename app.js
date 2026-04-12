@@ -74,6 +74,16 @@ app.post("/add", (req, res) => {
     );
 });
 
+// Validering av url
+if (!syllabus.startsWith("http")) {
+    errors.push("Kursplan måste vara en giltig URL");
+}
+
+// Validering av Progression
+if (!["A", "B", "C"].includes(progression.toUpperCase())) {
+    errors.push("Progression måste vara A, B eller C");
+}
+
 // Radera kurs 
 app.post("/delete/:id", (req, res) => {
     db.run("DELETE FROM courses WHERE id = ?", [req.params.id], () => {
