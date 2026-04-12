@@ -1,68 +1,55 @@
 <%- include("partials/header") %>
 
-<h1>Om webbplatsen</h1>
+<section class="hero">
+    <h1>Om webbplatsen</h1>
+    <p>
+        Den här webbplatsen är skapad som en laborationsuppgift i serverbaserad webbutveckling
+        och fungerar som ett databasbaserat CV för lagring och visning av lästa kurser.
+    </p>
+</section>
 
-<p>
-Denna webbplats är skapad som en laborationsuppgift i kursen webbutveckling.
-Syftet med applikationen är att fungera som ett databasbaserat CV där användaren kan lagra,
-visa och hantera kurser som har lästs.
-</p>
+<section class="card content">
+    <h2 class="section-title">Syfte</h2>
+    <p>
+        Syftet med webbplatsen är att ge användaren möjlighet att lagra kursinformation i en relationsdatabas
+        och sedan presentera informationen på ett tydligt sätt i en webbaserad applikation.
+    </p>
 
-<h2>Funktioner</h2>
-<ul>
-    <li>Visa alla kurser som lagrats i databasen</li>
-    <li>Lägga till nya kurser via ett formulär</li>
-    <li>Radera kurser</li>
-    <li>Validering av input på serversidan</li>
-</ul>
+    <h2 class="section-title">Funktioner</h2>
+    <ul>
+        <li>Visa alla sparade kurser</li>
+        <li>Lägga till nya kurser via formulär</li>
+        <li>Radera befintliga kurser</li>
+        <li>Validera användarens inmatning på serversidan</li>
+    </ul>
 
-<h2>Tekniker som används</h2>
-<ul>
-    <li>Node.js</li>
-    <li>Express</li>
-    <li>EJS (view engine)</li>
-    <li>SQLite (relationsdatabas)</li>
-    <li>HTML och CSS</li>
-</ul>
+    <h2 class="section-title">Tekniker</h2>
+    <ul>
+        <li>Node.js</li>
+        <li>Express</li>
+        <li>EJS som view engine</li>
+        <li>SQLite som relationsdatabas</li>
+        <li>HTML och CSS för struktur och design</li>
+    </ul>
 
-<h2>Databas</h2>
-<p>
-Webbplatsen använder en SQLite-databas där kursinformation lagras i en tabell som heter <strong>courses</strong>.
-Tabellen innehåller följande fält:
-</p>
+    <h2 class="section-title">Databas</h2>
+    <p>
+        Applikationen använder en SQLite-databas där kursinformation lagras i tabellen
+        <strong>courses</strong>. Tabellen innehåller bland annat kurskod, kursnamn,
+        länk till kursplan, progression och datum för när posten skapades.
+    </p>
 
-<ul>
-    <li><strong>id</strong> – unikt ID för varje kurs</li>
-    <li><strong>coursecode</strong> – kurskod</li>
-    <li><strong>coursename</strong> – kursens namn</li>
-    <li><strong>syllabus</strong> – länk till kursplan</li>
-    <li><strong>progression</strong> – kursens progression (A, B eller C)</li>
-    <li><strong>created_at</strong> – datum då kursen lades till</li>
-</ul>
+    <h2 class="section-title">Slutsatser</h2>
+    <p>
+        Genom arbetet med uppgiften har jag fått en bättre förståelse för hur en server med Node.js och Express
+        kan kommunicera med en relationsdatabas. Jag har också lärt mig hur SQL-kommandon som SELECT, INSERT
+        och DELETE används i praktiken, samt hur formulärdata kan valideras på serversidan innan den sparas.
+    </p>
 
-<h2>Syfte och lärdomar</h2>
-<p>
-Målet med uppgiften har varit att få förståelse för serverbaserad webbutveckling och hur en webbapplikation
-kan kommunicera med en databas.
-</p>
-
-<p>
-Genom arbetet har jag lärt mig:
-</p>
-
-<ul>
-    <li>Hur man bygger en server med Node.js och Express</li>
-    <li>Hur man ansluter till en relationsdatabas och kör SQL-kommandon</li>
-    <li>Hur man använder SELECT, INSERT och DELETE i praktiken</li>
-    <li>Hur man hanterar formulärdata och validerar input på serversidan</li>
-    <li>Hur man presenterar dynamisk data med en view engine (EJS)</li>
-</ul>
-
-<h2>Slutsats</h2>
-<p>
-Denna uppgift har gett en tydlig bild av hur backend och databas samverkar i en webbapplikation.
-Jag har fått en bättre förståelse för hur data lagras, hämtas och visas för användaren,
-samt vikten av validering och struktur i kod.
-</p>
+    <p>
+        Uppgiften har även gett en tydligare bild av samspelet mellan backend, databas och presentationslager
+        i en dynamisk webbapplikation.
+    </p>
+</section>
 
 <%- include("partials/footer") %>

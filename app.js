@@ -50,21 +50,32 @@ app.get("/add", (req, res) => {
 app.post("/add", (req, res) => {
     const { coursecode, coursename, syllabus, progression } = req.body;
     
-    let errors = [];
+let errors = [];
 
-    if (!coursecode) errors.push("Kurskod saknas");
-    if (!coursename) errors.push("Kursnamn saknas");
-    if (!syllabus) errors.push("Kursplan saknas"); 
-    if (!progression) errors.push("Progression saknas");
+if (!coursecode || coursecode.trim() === "") {
+    errors.push("Kurskod saknas");
+}
 
-    if (errors.length > 0) {
-        return res.render("add-course", { errors, formData: req.body });
-    }
+if (!coursename || coursename.trim() === "") {
+    errors.push("Kursnamn saknas");
+}
+
+if (!syllabus || syllabus.trim() === "") {
+    errors.push("Kursplan saknas");
+} else if (!syllabus.startsWith("http")) {
+    errors.push("Kursplan måste vara en giltig URL");
+}
+
+if (!progression || progression.trim() === "") {
+    errors.push("Progression saknas");
+} else if (!["A", "B", "C"].includes(progression.toUpperCase())) {
+    errors.push("Progression måste vara A, B eller C");
+}
 
     db.run(
         `INSERT INTO courses (coursecode, coursename, syllabus, progression)
         VALUES (?, ?, ?, ?)`,
-        [coursecode, coursename, syllabus, progression],
+        [coursecode.trim(), coursename.trim(), syllabus.trim(), progression.trim().toUpperCase()],
         (err) => {
             if (err) {
                 return res.send("Fel vid sparande");

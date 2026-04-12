@@ -1,33 +1,59 @@
 <%- include("partials/header") %>
 
-<h1>Mina kurser</h1>
+<section class="hero">
+    <h1>Mina lästa kurser</h1>
+    <p>
+        Här visas alla kurser som har lagrats i databasen. Du kan lägga till nya kurser,
+        visa kursplaner och radera poster direkt från listan.
+    </p>
+</section>
 
-<% if (courses.length === 0) { %>
-    <p>Inga kurser ännu</p>
-<% } else { %>
-    <table>
-        <tr>
-            <th>Kurskod</th>
-            <th>Namn</th>
-            <th>Kursplan</th>
-            <th>Progression</th>
-            <th></th>
-        </tr>
+<section class="card table-card">
+    <div class="table-toolbar">
+        <h2>Kursöversikt</h2>
+    </div>
 
-        <% courses.forEach(c => { %>
-            <tr>
-                <td><%= c.coursecode %></td>
-                <td><%= c.coursename %></td>
-                <td><a href="<%= c.syllabus %>" target="_blank">Länk</a></td>
-                <td><%= c.progression %></td>
-                <td>
-                    <form action="/delete/<%= c.id %>" method="POST">
-                        <button>Radera</button>
-                    </form>
-                </td>
-            </tr>
-        <% }) %>
-    </table>
-<% } %>
+    <% if (courses.length === 0) { %>
+        <div class="empty-state">
+            <p>Inga kurser finns sparade ännu. Lägg till din första kurs för att komma igång.</p>
+            <a class="btn btn-primary" href="/add">Lägg till kurs</a>
+        </div>
+    <% } else { %>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kurskod</th>
+                        <th>Kursnamn</th>
+                        <th>Kursplan</th>
+                        <th>Progression</th>
+                        <th>Åtgärd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% courses.forEach(c => { %>
+                        <tr>
+                            <td><strong><%= c.coursecode %></strong></td>
+                            <td><%= c.coursename %></td>
+                            <td>
+                                <a href="<%= c.syllabus %>" target="_blank" rel="noopener noreferrer">
+                                    Visa kursplan
+                                </a>
+                            </td>
+                            <td>
+                                <span class="badge"><%= c.progression %></span>
+                            </td>
+                            <td>
+                                <form class="inline-form" action="/delete/<%= c.id %>" method="POST">
+                                    <button class="btn-danger" type="submit">Radera</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</section>
 
 <%- include("partials/footer") %>

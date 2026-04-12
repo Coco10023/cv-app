@@ -1,21 +1,76 @@
 <%- include("partials/header") %>
 
-<h1>Lägg till kurs</h1>
+<section class="hero">
+    <h1>Lägg till kurs</h1>
+    <p>
+        Fyll i uppgifterna nedan för att spara en ny kurs i databasen.
+        Alla fält måste fyllas i innan kursen kan sparas.
+    </p>
+</section>
 
-<% if (errors.length > 0) { %>
-    <ul>
-        <% errors.forEach(e => { %>
-            <li><%= e %></li>
-        <% }) %>
-    </ul>
-<% } %>
+<section class="card form-card">
+    <h2 class="section-title">Ny kurs</h2>
 
-<form action="/add" method="POST">
-    <input type="text" name="coursecode" placeholder="Kurskod"><br>
-    <input type="text" name="coursename" placeholder="Kursnamn"><br>
-    <input type="text" name="syllabus" placeholder="URL"><br>
-    <input type="text" name="progression" placeholder="A/B/C"><br>
-    <button>Spara</button>
-</form>
+    <% if (errors.length > 0) { %>
+        <div class="error-box">
+            <ul>
+                <% errors.forEach(e => { %>
+                    <li><%= e %></li>
+                <% }) %>
+            </ul>
+        </div>
+    <% } %>
+
+    <form class="course-form" action="/add" method="POST">
+        <div class="form-group">
+            <label for="coursecode">Kurskod</label>
+            <input
+                type="text"
+                id="coursecode"
+                name="coursecode"
+                placeholder="Till exempel DT207G"
+                value="<%= formData.coursecode || '' %>"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="coursename">Kursnamn</label>
+            <input
+                type="text"
+                id="coursename"
+                name="coursename"
+                placeholder="Till exempel Backend-baserad webbutveckling"
+                value="<%= formData.coursename || '' %>"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="syllabus">Kursplan (URL)</label>
+            <input
+                type="text"
+                id="syllabus"
+                name="syllabus"
+                placeholder="https://www.miun.se/..."
+                value="<%= formData.syllabus || '' %>"
+            >
+            <p class="form-help">Ange en fullständig länk till kursplanen.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="progression">Kursprogression</label>
+            <select id="progression" name="progression">
+                <option value="">Välj progression</option>
+                <option value="A" <%= formData.progression === "A" ? "selected" : "" %>>A</option>
+                <option value="B" <%= formData.progression === "B" ? "selected" : "" %>>B</option>
+                <option value="C" <%= formData.progression === "C" ? "selected" : "" %>>C</option>
+            </select>
+        </div>
+
+        <div class="actions">
+            <button class="btn-primary" type="submit">Spara kurs</button>
+            <a class="btn btn-secondary" href="/">Till startsidan</a>
+        </div>
+    </form>
+</section>
 
 <%- include("partials/footer") %>
