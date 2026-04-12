@@ -1,14 +1,68 @@
 <%- include("partials/header") %>
 
-<h1>Om</h1>
+<h1>Om webbplatsen</h1>
 
 <p>
-Denna webbplats är skapad med Node.js och Express.
-Data lagras i en SQLite-databas.
+Denna webbplats är skapad som en laborationsuppgift i kursen webbutveckling.
+Syftet med applikationen är att fungera som ett databasbaserat CV där användaren kan lagra,
+visa och hantera kurser som har lästs.
+</p>
+
+<h2>Funktioner</h2>
+<ul>
+    <li>Visa alla kurser som lagrats i databasen</li>
+    <li>Lägga till nya kurser via ett formulär</li>
+    <li>Radera kurser</li>
+    <li>Validering av input på serversidan</li>
+</ul>
+
+<h2>Tekniker som används</h2>
+<ul>
+    <li>Node.js</li>
+    <li>Express</li>
+    <li>EJS (view engine)</li>
+    <li>SQLite (relationsdatabas)</li>
+    <li>HTML och CSS</li>
+</ul>
+
+<h2>Databas</h2>
+<p>
+Webbplatsen använder en SQLite-databas där kursinformation lagras i en tabell som heter <strong>courses</strong>.
+Tabellen innehåller följande fält:
+</p>
+
+<ul>
+    <li><strong>id</strong> – unikt ID för varje kurs</li>
+    <li><strong>coursecode</strong> – kurskod</li>
+    <li><strong>coursename</strong> – kursens namn</li>
+    <li><strong>syllabus</strong> – länk till kursplan</li>
+    <li><strong>progression</strong> – kursens progression (A, B eller C)</li>
+    <li><strong>created_at</strong> – datum då kursen lades till</li>
+</ul>
+
+<h2>Syfte och lärdomar</h2>
+<p>
+Målet med uppgiften har varit att få förståelse för serverbaserad webbutveckling och hur en webbapplikation
+kan kommunicera med en databas.
 </p>
 
 <p>
-Jag har lärt mig hur man lagrar, hämtar och visar data från en databas.
+Genom arbetet har jag lärt mig:
+</p>
+
+<ul>
+    <li>Hur man bygger en server med Node.js och Express</li>
+    <li>Hur man ansluter till en relationsdatabas och kör SQL-kommandon</li>
+    <li>Hur man använder SELECT, INSERT och DELETE i praktiken</li>
+    <li>Hur man hanterar formulärdata och validerar input på serversidan</li>
+    <li>Hur man presenterar dynamisk data med en view engine (EJS)</li>
+</ul>
+
+<h2>Slutsats</h2>
+<p>
+Denna uppgift har gett en tydlig bild av hur backend och databas samverkar i en webbapplikation.
+Jag har fått en bättre förståelse för hur data lagras, hämtas och visas för användaren,
+samt vikten av validering och struktur i kod.
 </p>
 
 <%- include("partials/footer") %>
