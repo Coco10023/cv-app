@@ -1,15 +1,16 @@
+// Importerar paket som behövs
 const express = require("express"); 
 const path = require("path"); 
 const sqlite3 = require("sqlite3").verbose();
 
+// Skapar Express-app
 const app = express();
 const PORT = 3000;
 
-// Koppla databasen 
+// Kopplar upp SQLite-databasen 
 const db = new sqlite3.Database("./db/cv.db"); 
 
-// Skapar tabell
-
+// Skapar tabell om den inte redan finns
 db.run(`
     CREATE TABLE IF NOT EXISTS courses (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,7 +32,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 
-// Visa alla kurser
+// Hämtar alla kurser från databasen och visar på startsidan
 app.get("/", (req, res) => {
     db.all("SELECT * FROM courses ORDER BY created_at DESC", (err, rows) => {
         if (err) {
@@ -46,7 +47,7 @@ app.get("/add", (req, res) => {
     res.render("add-course", { errors: [], formData: {}});
 });
 
-// Lägg till kurs
+// Tar emot formulärdata och sparar en ny kurs
 app.post("/add", (req, res) => {
     const { coursecode, coursename, syllabus, progression } = req.body;
     
@@ -95,7 +96,7 @@ if (!["A", "B", "C"].includes(progression.toUpperCase())) {
     errors.push("Progression måste vara A, B eller C");
 }
 
-// Radera kurs 
+// Tar bort en kurs baserat på ID
 app.post("/delete/:id", (req, res) => {
     db.run("DELETE FROM courses WHERE id = ?", [req.params.id], () => {
         res.redirect("/");
