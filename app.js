@@ -20,6 +20,9 @@ db.run(`
         progression TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
+    INSERT INTO courses (coursecode, coursename, syllabus, progression)
+        SELECT 'DT207G', 'Backend Webbutveckling', 'https://www.miun.se', 'B'
+        WHERE NOT EXISTS (SELECT 1 FROM courses)
         
 `);     
 
