@@ -25,7 +25,7 @@ db.run(`
 // Lägger in en testkurs om tabellen är tom
 db.run(`
     INSERT INTO courses (coursecode, coursename, syllabus, progression)
-    SELECT 'DT207G', 'Backend Webbutveckling', 'https://www.miun.se', 'B'
+    SELECT 'DT207G', 'Backend Webbutveckling', 'https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT207G/', 'B'
     WHERE NOT EXISTS (SELECT 1 FROM courses)
 `);
 
